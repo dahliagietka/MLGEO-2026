@@ -1,0 +1,106 @@
+<<<<<<< HEAD
+## Ashley and Cameron
+* Data sources should be open and accessible. 
+    * Wilkinson, M., Dumontier, M., Aalbersberg, I. et al. The FAIR Guiding Principles for scientific data management and stewardship. Sci Data 3, 160018 (2016). https://doi.org/10.1038/sdata.2016.18
+* Check your data for gaps, missing values, outliers, and other inconsistencies. Understand the units, uncertainties, and statistical distribution of the data. 
+<figure>
+  <img src="image.png" alt="Description of image">
+  <figcaption><strong>Figure 1:</strong> Example of data distribution and statistical characteristics for our subglacial lake identification project using satellite altimeter data.</figcaption>
+</figure>
+
+* Document your data sources and any processing steps as you work with it to keep track of changes or make your processing more accessible to future users.
+* Reduce dimensionality using techniques like filtering or PCA. Carefully consider the question you are trying to answer when selecting parameters and dimensions. 
+=======
+# Manali, David, and Filip
+
+## Data best practices:
+
+1. Ensure that the data is clean: consistent data collection, data entries, remove useless variables or NaNs.
+2. Make sure there is enough data: Use data expansion methods like Monte Carlo to expand the dataset.
+3. The data should be actually useful to the question you are asking.
+4. Reduce data dimensionality, so that you need less computational power.
+5. Know about all the alternative datasets, so you understand why exactly you are using this specific dataset.
+6. Save processed data separately from the unprocessed files.
+7. Understand the format of your files, and transforming it so that your model can read/process them.
+# Clouds Team
+Angel Chui, Lesly Silva, Sofia Vakhutinsky
+
+## Best Practices for Data
+- Read through existing literature for similar topic/data to figure out what has been done, what datasets or type of data has been used, and what methods have been used to get an idea of what could or could not work. (Review papers if available can be helpful for this).
+- For Data Source
+    - Ideally find a data source that is open source and is regularly maintained by the hosting agency/service (e.g. some agencies provide data that is already quality controlled)
+    - Find a data source that is in a commonly used data format and type
+- For ML usage
+    - Can be helpful to find data that is not spatially or temporally sparse to avoid needing to do additional steps such as resampling
+    - Explore meta data of dataset and make intial plots to visualize data to ensure type of data is appropriate
+    - Before using the data for ML, it may be useful to do some pre-processing such as reducing the number of dimensions so during ML it is more efficient
+### Group: Olivia Murdock and Sofia Suhinin
+_What considerations about data should research take into account?_
+
+- Accessibility & Organisation:
+    - Easily accessible data via API or website download
+        - APIs: enabling you to engage with applications and data via code
+        - MCPs: Model Context Protocols, enabling AI agents to connect and engage with applications and data 
+    - Well documented (i.e., clear instructions for access, sufficient amount of data (through resolution or time))
+    - Well organized documentation of data (i.e., if used in past, how did previous authors process this data...)
+    - Reputable data source
+        - Good geoscience sources: NOAA, USGS, NSIDC, ESA, NASA, EarthData
+- Relevance
+    - Data is relevant to desired project, i.e., time scale, spatial scale etc. 
+        - Using ICESat-2 for ice sheet/glaciology research as opposed to seismology
+    - Can use data to contribute/fill 'science gap'
+    - Most up to date data source
+- Storage & Back Up
+    - Is the size of the data realistic for your project, i.e., do you need to size down or find a way to store data
+    - DO NOT store on git
+    - Keep a local and online back up 
+    - Keep a separate folder for data, only (data) copy from it never write back to it
+ 
+## Christina and David
+
+- How clean is the data?
+  - How much time and effort can you allocate to cleaning and processing the data?
+  - How much data is there and can you're hardware and interface support it?
+  - How many dimensions are in the data? (Abdi and Williams, 2010)
+    - Would dimensional reduction make it easier to visualize and understand?
+      - If you have data that's only in 2 dimensions, or you only need to visualize the change of one known dimension relative to a single other dimension is PCA really necessary?
+      - How confident are you in your PCA if you chose to use it?
+        - You can use bootstrap re-sampling to assess the confidence limits of your PCA (Babamoradi et al. 2013)
+- Verify that you're data is already parsed and ready for a program to read easily (some instruments don't generate data in a usable format).
+  - Example: Many PI instruments from OOI are unprocessed and generate data that python or a parser cannot decode without a parser for the specific instrument which might be proprietary)
+ 
+### Volcano group - Matt, Hiroto, Jose
+1. size - ensuring dataset is big enough for ml learning application, like how FlowDAT only had 30 values necessary for PDC model prediction.
+2. formatting - data must be easy to sort through both with code and output from data must be interpretable to human reader.
+3. ease of access - If data cannot be accessed, no ML model can be trained.
+4. uniformity of presented data - objects in dataset must share same parameters/variables or ML comparison for training becomes difficult
+5. units/context - Units and context of data so that data can be understood by human audience and thus acted on in some manner.
+
+## Altti
+After sourcing data, and characterization, transforming the data into a clean fromat is very important to ensure an ML model is able to use the data as efficiently as possible.
+1. Standardizing or normalizing is cruicial to ensure uniform data. 
+2. Another big thing often overlooked is documenting all changes and steps taken during the transfomation process. The ability to revert back or change a small part of the dataset becomes much easier with documentation and allow others to quickly understand your process and contribute. 
+3. This article from UW-Madison outlines good steps to take for data documentation: [5 Ways to Document Data](https://data.wisc.edu/data-literacy/document/)
+
+## Justin 
+1. Before putting all your trust into raw data, plot it out first or make some sort of visualization to find any possible outliers or distributions 
+2. Adjust the dimensionality to make the process more efficient. Techniques such as PCA can help reduce the computational load of these data sets but make sure you are confident when reducing dimensions 
+3. Don't put too large data files into the standard repository. Make sure they are saved in separate read only areas
+
+
+
+
+
+
+
+
+>>>>>>> 14a8371dc9fbea76c48eaa5f1003c49ac7ff160f
+
+## Mary Orrand
+*Project: Predicting ocean pCO₂ from satellite remote sensing*
+
+1. **Use well-known, publicly available data sources.** I used buoy measurements from NOAA and satellite sea surface temperature from ERDDAP. Both are free, well-documented, and maintained by government agencies — which meant I could trust the data quality and spend less time hunting for usable files.
+2. **Check that your data actually makes sense before using it.** After pulling satellite SST and matching it to buoy locations, I compared the satellite temperature values to the actual buoy readings. They matched almost perfectly (r = 0.998), which told me my data pipeline was pulling the right data from the right places.
+3. **Have a consistent plan for cleaning messy data.** My buoy files used -999 for missing values, had different date formats, and used different column names depending on the location. I wrote a cleaning script that handled all of these automatically, and I documented what it does so I could come back to it later without guessing.
+4. **Keep raw data separate from processed data.** I set up separate folders for raw downloads, cleaned files, and final training data. I never edited the raw files directly — so if I needed to change how I cleaned the data, I could just re-run the pipeline from scratch.
+5. **Understand the differences between your data sources before combining them.** My satellite data covers a grid of pixels (~4.6 km spacing) while each buoy is a single point. I had to think carefully about how to match them — I ended up pulling all satellite pixels within a 12 km box around each buoy and computing summary statistics. That decision only made sense after I explored both datasets on their own first.
